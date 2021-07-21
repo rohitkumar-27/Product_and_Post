@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block header %}
+<a class="btn btn-success mr-2" href="{% url 'signup' %}">
+    signup
+</a>
+{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container text-center mt-5 pt-5">
+ <form class="form-signin" method="POST">
+   {% csrf_token %}
+   {% if error %}
+   <div class="alert alert-danger" role="alert">
+     {{error}}
+   </div>
+   {% endif %}
+   <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+   {{form|crispy }}
+   <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+
+   <button class="btn mt-4 btn-primary btn-block" type="submit">Sign in</button>
+</form>
+</div>
+
+{% endblock content %}

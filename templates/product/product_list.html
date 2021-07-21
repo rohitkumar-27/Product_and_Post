@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% block header %}
+<a class="btn btn-success mr-2" href="{% url 'home' %}">Posts</a>
+<a class="btn btn-success mr-2" href="{% url 'signup' %}">
+    signup
+</a>
+{% endblock %}
+{% block content %}
+
+{% for products in product %}
+<div class="card" style="width: 85rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{products.name}}</h5>
+    <p class="card-text text-muted h6"> {{ products.weight }}</p>
+    <p class="card-text text-muted h6"> {{ products.price }}</p>
+    <p class="card-text text-muted h6"> created - {{ products.created_at}} </p>
+    <p class="card-text text-muted h6"> updated - {{ products.updated_at}} </p>
+    <a href="{% url 'product_delete' pk=products.pk %}" class="card-link">Delete</a>
+  </div>
+</div>
+{% endfor %}
+<a class="btn btn-success mr-2" href="{% url 'product_create' %}">Create Product</a>
+{% endblock %}
